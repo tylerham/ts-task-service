@@ -6,7 +6,7 @@ public class Task {
 
     private long id;
 
-    private String name;
+    private String taskName;
     private String assignedUser;
 
     private boolean completed;
@@ -14,9 +14,9 @@ public class Task {
     public Task() {
     }
 
-    public Task(long id, String name, String assignedUser, boolean completed) {
+    public Task(long id, String taskName, String assignedUser, boolean completed) {
         this.id = id;
-        this.name = name;
+        this.taskName = taskName;
         this.assignedUser = assignedUser;
         this.completed = completed;
     }
@@ -27,8 +27,8 @@ public class Task {
     }
 
     @JsonProperty
-    public String getName() {
-        return name;
+    public String getTaskName() {
+        return taskName;
     }
 
     @JsonProperty

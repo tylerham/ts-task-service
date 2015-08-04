@@ -25,6 +25,6 @@ public class TaskResource {
     @GET
     @Timed
     public Task getTask(@QueryParam("id") long id){
-        return null;
+        return new Task(counter.incrementAndGet(), defaultName, defaultName,false);
     }
 }
