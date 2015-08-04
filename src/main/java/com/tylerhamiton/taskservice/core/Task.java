@@ -1,4 +1,4 @@
-package com.tylerhamiton.taskservice.api;
+package com.tylerhamiton.taskservice.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +8,7 @@ public class Task {
 
     private String name;
     private String assignedUser;
+
     private boolean completed;
 
     public Task() {
