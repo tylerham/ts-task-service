@@ -1,4 +1,4 @@
-package com.tylerhamiton.taskservice;
+package com.tylerhamilton.taskservice;
 
 import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;

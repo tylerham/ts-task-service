@@ -1,6 +1,6 @@
-package com.tylerhamiton.taskservice;
+package com.tylerhamilton.taskservice;
 
-import com.tylerhamiton.taskservice.resources.TaskResource;
+import com.tylerhamilton.taskservice.resources.TaskResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;

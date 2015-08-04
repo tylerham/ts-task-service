@@ -1,6 +1,6 @@
-package com.tylerhamiton.taskservice.resources;
+package com.tylerhamilton.taskservice.resources;
 
-import com.tylerhamiton.taskservice.core.Task;
+import com.tylerhamilton.taskservice.core.Task;
 
 import com.codahale.metrics.annotation.Timed;
 

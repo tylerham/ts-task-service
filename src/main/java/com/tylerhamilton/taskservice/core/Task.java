@@ -1,4 +1,4 @@
-package com.tylerhamiton.taskservice.core;
+package com.tylerhamilton.taskservice.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
