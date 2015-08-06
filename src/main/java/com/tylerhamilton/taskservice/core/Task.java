@@ -2,13 +2,22 @@ package com.tylerhamilton.taskservice.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Task {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "task")
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "taskName", nullable = false)
     private String taskName;
+
+    @Column(name = "assignedUser", nullable = false)
     private String assignedUser;
 
+    @Column(name = "completed", nullable = false)
     private boolean completed;
 
     public Task() {
@@ -40,4 +49,6 @@ public class Task {
     public boolean isCompleted() {
         return completed;
     }
+
+
 }
