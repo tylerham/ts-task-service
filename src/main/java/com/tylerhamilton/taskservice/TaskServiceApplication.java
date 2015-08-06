@@ -1,6 +1,6 @@
 package com.tylerhamilton.taskservice;
 
-import com.tylerhamilton.taskservice.resources.TaskResource;
+import com.tylerhamilton.taskservice.resources.TasksResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -23,10 +23,10 @@ public class TaskServiceApplication extends Application<TaskServiceConfiguration
     @Override
     public void run(TaskServiceConfiguration configuration,
                     Environment environment) {
-        final TaskResource taskResource = new TaskResource(
+        final TasksResource tasksResource = new TasksResource(
                 configuration.getDefaultName()
         );
-        environment.jersey().register(taskResource);
+        environment.jersey().register(tasksResource);
     }
 
 }
