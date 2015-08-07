@@ -1,7 +1,6 @@
 package com.tylerhamilton.taskservice.resources;
 
 import com.tylerhamilton.taskservice.core.Task;
-
 import com.tylerhamilton.taskservice.db.TaskDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 
@@ -26,12 +25,14 @@ public class TasksResource {
 
     @GET
     @UnitOfWork
-    public Task getTask(@QueryParam("id") long id){
-        return new Task(counter.incrementAndGet(), defaultName, defaultName,false);
+    public Task getTask(@QueryParam("id") long id) {
+        return new Task(counter.incrementAndGet(), defaultName, defaultName, false);
     }
 
     @POST
     @UnitOfWork
-    public Task createTask(Task task){return tasksDAO.create(task);}
+    public Task createTask(Task task) {
+        return tasksDAO.create(task);
+    }
 
 }
