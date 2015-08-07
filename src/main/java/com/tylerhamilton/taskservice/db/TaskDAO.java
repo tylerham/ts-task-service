@@ -14,6 +14,7 @@ import java.util.List;
 public class TaskDAO extends AbstractDAO<Task> {
     public TaskDAO(SessionFactory factory) {
         super(factory);
+        System.out.println("task dao ctor after super");
     }
     public Task create(Task task) {
         return persist(task);

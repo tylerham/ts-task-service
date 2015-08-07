@@ -9,8 +9,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Path("/task")
+@Path("/tasks")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class TasksResource {
     private final String defaultName;
     private final AtomicLong counter;
