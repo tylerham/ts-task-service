@@ -26,12 +26,15 @@ public class TasksResource {
     @GET
     @UnitOfWork
     public Task getTask(@QueryParam("id") long id) {
-        return new Task(counter.incrementAndGet(), defaultName, defaultName, false);
+        return new Task(defaultName, defaultName, false);
     }
 
     @POST
     @UnitOfWork
     public Task createTask(Task task) {
+        // POST is for creation, not updating, so set ID to zero, if it has been set, to create a new Task
+        task.setId(0);
+        System.out.println("############### TasksResource " + task.getId() + task.getTaskName() + task.getAssignedUser() + task.isCompleted());
         return tasksDAO.create(task);
     }
 

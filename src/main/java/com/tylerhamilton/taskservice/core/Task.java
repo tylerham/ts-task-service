@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "task")
+@Table(name = "TASKS")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +23,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(long id, String taskName, String assignedUser, boolean completed) {
-        this.id = id;
+    public Task(String taskName, String assignedUser, boolean completed) {
         this.taskName = taskName;
         this.assignedUser = assignedUser;
         this.completed = completed;
@@ -35,9 +34,17 @@ public class Task {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @JsonProperty
     public String getTaskName() {
         return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
     @JsonProperty
@@ -45,10 +52,16 @@ public class Task {
         return assignedUser;
     }
 
+    public void setAssignedUser(String assignedUser) {
+        this.assignedUser = assignedUser;
+    }
+
     @JsonProperty
     public boolean isCompleted() {
         return completed;
     }
 
-
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 }

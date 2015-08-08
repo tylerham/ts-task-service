@@ -14,6 +14,7 @@ public class TaskDAO extends AbstractDAO<Task> {
     }
 
     public Task create(Task task) {
+        System.out.println("#$$$$$$$$$$$$$$$ TaskDAO " +task.getId() + task.getTaskName() + task.getAssignedUser() + task.isCompleted());
         return persist(task);
     }
 
