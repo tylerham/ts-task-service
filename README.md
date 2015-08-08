@@ -1,9 +1,10 @@
 # ts-task-service
 
- To Do:
+To Do:
 
- - read from db to console
- - read from db to GET (all assigned to me)
- - PUT to update task assignment
- - PUT to update task completion
- - Unit Tests
+- Unit Tests
+- readme:
+  - prerequsities
+  - set up
+  - how to run
+  - endpoints
