@@ -75,6 +75,8 @@ public class TasksResourceTest {
                 });
 
         verify(tasksDAO).findAllAssignedTo(savedUserName);
-        Assertions.assertThat(response).containsAll(tasks);
+        Task returnedTask = (Task) response.toArray()[0];
+        Assertions.assertThat(returnedTask.getAssignedUser()).isEqualToIgnoringCase(savedUserName);
+        Assertions.assertThat(returnedTask.getTaskName()).isEqualToIgnoringCase(savedTask.getTaskName());
     }
 }
