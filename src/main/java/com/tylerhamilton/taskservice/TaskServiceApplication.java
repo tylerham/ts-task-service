@@ -42,12 +42,9 @@ public class TaskServiceApplication extends Application<TaskServiceConfiguration
     @Override
     public void run(TaskServiceConfiguration configuration,
                     Environment environment) {
-        System.out.println("started run");
         SessionFactory sessionFactory = hibernate.getSessionFactory();
-        System.out.println("hibernate bundle get session factory is null " + sessionFactory == null);
         final TaskDAO taskDAO = new TaskDAO(sessionFactory);
         final TasksResource tasksResource = new TasksResource(
-                configuration.getDefaultName(),
                 taskDAO
         );
         environment.jersey().register(tasksResource);

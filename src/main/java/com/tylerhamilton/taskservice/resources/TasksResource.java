@@ -14,12 +14,9 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TasksResource {
-    private final String defaultName;
-
     private final TaskDAO tasksDAO;
 
-    public TasksResource(String defaultName, TaskDAO tasksDAO) {
-        this.defaultName = defaultName;
+    public TasksResource(TaskDAO tasksDAO) {
         this.tasksDAO = tasksDAO;
     }
 
@@ -27,7 +24,6 @@ public class TasksResource {
     @Path("/{id}")
     @UnitOfWork
     public Task getTask(@PathParam("id") LongParam id) {
-        System.out.println("################# id is " + id);
         long taskId = id.get();
         Task task = tasksDAO.findById(taskId);
         if (task == null) {
@@ -40,7 +36,6 @@ public class TasksResource {
     @GET
     @UnitOfWork
     public Task[] getTasks(@QueryParam("user") String user) {
-        System.out.println("################# user is " + user);
         List<Task> assignedTaskList = tasksDAO.findAllAssignedTo(user);
         if (assignedTaskList == null || assignedTaskList.isEmpty()) {
             throw new NotFoundException("No tasks found with assigned user " + user);
@@ -55,7 +50,6 @@ public class TasksResource {
     public Task createTask(Task task) {
         // POST is for creation, not updating, so set ID to zero, if it has been set, to create a new Task
         task.setId(0);
-        System.out.println("############### TasksResource " + task.getId() + task.getTaskName() + task.getAssignedUser() + task.isCompleted());
         return tasksDAO.create(task);
     }
 
@@ -81,15 +75,5 @@ public class TasksResource {
         updatedTask.setCompleted(task.isCompleted());
 
         return tasksDAO.saveOrUpdate(updatedTask);
-
-
-//        Method[] methods = Task.class.getMethods();
-//        ArrayList<Method> settableMethods = new ArrayList<Method>();
-//        for (Method method : methods) {
-//            if (method.getName().substring(0, 2).equalsIgnoreCase("set")) {
-//                settableMethods.add(method);
-//            }
-//        }
-//        return null;
     }
 }
