@@ -1,4 +1,4 @@
-package com.tylerhamiton.taskservice.resources;
+package com.tylerhamilton.taskservice.resources;
 
 import com.tylerhamilton.taskservice.core.Task;
 import com.tylerhamilton.taskservice.db.TaskDAO;
