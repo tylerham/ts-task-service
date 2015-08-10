@@ -2,7 +2,6 @@ package com.tylerhamilton.taskservice.resources;
 
 import com.tylerhamilton.taskservice.core.Task;
 import com.tylerhamilton.taskservice.db.TaskDAO;
-import com.tylerhamilton.taskservice.resources.TasksResource;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
@@ -50,7 +49,7 @@ public class TasksResourceTest {
     }
 
     @Test
-    public void testPostTask() {
+    public void postTask() {
         when(tasksDAO.create(any(Task.class))).thenReturn(newTask);
         final Response response = resources.client().target("/tasks")
                 .request(MediaType.APPLICATION_JSON_TYPE)
@@ -64,7 +63,7 @@ public class TasksResourceTest {
     }
 
     @Test
-    public void listPeople() throws Exception {
+    public void listTasks() throws Exception {
         final String savedUserName = savedTask.getAssignedUser();
         final ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(savedTask);
@@ -78,5 +77,25 @@ public class TasksResourceTest {
         Task returnedTask = (Task) response.toArray()[0];
         Assertions.assertThat(returnedTask.getAssignedUser()).isEqualToIgnoringCase(savedUserName);
         Assertions.assertThat(returnedTask.getTaskName()).isEqualToIgnoringCase(savedTask.getTaskName());
+    }
+
+    @Test
+    public void deleteTask() throws Exception {
+        long savedTaskId = savedTask.getId();
+        when(tasksDAO.findById(savedTaskId)).thenReturn(savedTask);
+
+        final Response response = resources.client().target("/tasks/" + savedTaskId)
+                .request().delete();
+
+        Assertions.assertThat(response.getStatusInfo()).isEqualTo(Response.Status.NO_CONTENT);
+        verify(tasksDAO).delete(savedTask);
+    }
+
+    @Test
+    public void deleteInvalidTask() throws Exception {
+        final Response response = resources.client().target("/tasks/" + newTask.getId())
+                .request().delete();
+
+        Assertions.assertThat(response.getStatusInfo()).isEqualTo(Response.Status.NOT_FOUND);
     }
 }

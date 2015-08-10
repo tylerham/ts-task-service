@@ -30,4 +30,8 @@ public class TaskDAO extends AbstractDAO<Task> {
     public Task saveOrUpdate(Task existingTask) {
         return super.persist(existingTask);
     }
+
+    public void delete(Task savedTask) {
+        super.currentSession().delete(savedTask);
+    }
 }

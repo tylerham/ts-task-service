@@ -5,15 +5,12 @@
 - JDK 8 on your PATH and JAVA_HOME set
 - maven on your PATH
 
-## Getting Dependencies
-
-You may need to:
-
+## Setup
 
     $ mvn dependency:resolve
     $ mvn clean compile install
 
-## Setting up the database
+### Setting up the database
 
     $ java -jar target/ts-task-service-1.0-SNAPSHOT.jar db migrate default.yml
 

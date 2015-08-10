@@ -8,6 +8,7 @@ import io.dropwizard.jersey.params.LongParam;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/tasks")
@@ -29,7 +30,6 @@ public class TasksResource {
         if (task == null) {
             throw new NotFoundException("No task found with id " + taskId);
         }
-
         return task;
     }
 
@@ -47,10 +47,19 @@ public class TasksResource {
 
     @POST
     @UnitOfWork
-    public Task createTask(Task task) {
+    public Task createTask(Task newTask) {
         // POST is for creation, not updating, so set ID to zero, if it has been set, to create a new Task
-        task.setId(0);
-        return tasksDAO.create(task);
+        newTask.setId(0);
+        return tasksDAO.create(newTask);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @UnitOfWork
+    public Response deleteTask(@PathParam("id") LongParam id) {
+        Task taskToDelete = getTask(id);
+        tasksDAO.delete(taskToDelete);
+        return Response.noContent().build();
     }
 
     @PATCH
